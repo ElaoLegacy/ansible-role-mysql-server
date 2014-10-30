@@ -5,6 +5,7 @@
     name={{ item }}
     state=present
   with_items:
+    - python-software-properties
     - python-mysqldb
     - mysql-server
   sudo: yes
