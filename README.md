@@ -1,13 +1,13 @@
 Ansible Role - MySQL Server
 ===========================
 
-A MySQL Server role to install MySQL Server on elao symfony standard vagrant box
+A MySQL Server role to install and configure MySQL Server
 
 
 Requirements
 ------------
 
-This role only run on elao symfony standard vagrant box. See https://vagrantcloud.com/elao/symfony-standard-debian
+Base role from ELAO stack (elao.base)
 
 
 Role Handlers
@@ -18,7 +18,7 @@ Role Handlers
 
 Role Variables
 --------------
-
+```
     elao_mysql_users:
       - { name: 'foo', password: 'bar', priv: 'foo.*:ALL', host: '127.0.0.1' }
     elao_mysql_databases:
@@ -28,7 +28,54 @@ Role Variables
     elao_mysql_login_host:     localhost
 
     elao_mysql_login_auto: false
+```
 
+#### Full configuration
+
+```
+elao_mysql_config_globals:
+    socket:                 "/var/run/mysqld/mysqld.sock"   # Define client socket
+    port:                   3306                            # Define client connectiong port 
+    nice:                   0
+
+elao_mysql_config_mysqld_basics:
+    user:                   mysql
+    pid:                    "/var/run/mysqld/mysqld.pid"
+    socket:                 "/var/run/mysqld/mysqld.sock"   # Define server socket
+    port:                   3306                            # Define server listening port
+    basedir:                "/usr"
+    datadir:                "/var/lib/mysql"
+    tmpdir:                 "/tmp"
+    messages_dir:           "/usr/share/mysql"
+    character_set_server:   utf8
+    collation_server:       utf8_general_ci
+    bind_address:           "127.0.0.1"
+
+elao_mysql_config_mysqld_advanced:
+    key_buffer:             "16M"
+    max_allowed_packet:     "16M"
+    thread_stack:           "192K"
+    thread_cache_size:      "8"
+    myisam_recover:         "BACKUP"
+    max_connections:        100
+    table_cache:            64
+    thread_concurrency:     10
+    query_cache_limit:      "1M"
+    query_cache_size:       "16M"
+
+elao_mysql_config_mysqld_replication:
+    server_id:              1
+    log_bin:                "/var/log/mysql/mysql-bin.log"
+    binlog_do_db:           ~
+    binlog_ignore_db:       ~
+
+elao_mysql_config_mysqld_logging:
+    log_slow_queries:               "/var/log/mysql/mysql-slow.log"
+    long_query_time:                2
+    log_queries_not_using_indexes:  Yes
+    expire_logs_days:               10
+    max_binlog_size:                "100M"
+```
 
 Example Playbook
 ----------------

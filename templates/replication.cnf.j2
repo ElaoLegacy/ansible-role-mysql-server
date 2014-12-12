@@ -1,0 +1,8 @@
+[mysqld]
+
+{% if elao_mysql_config_mysqld_replication.server_id is defined %}
+server-id    = {{ elao_mysql_config_mysqld_replication.server_id }}
+{% endif %}
+{% if elao_mysql_config_mysqld_replication.log_bin is defined %}
+log_bin      = {{ elao_mysql_config_mysqld_replication.log_bin }}
+{% endif %}

@@ -5,21 +5,88 @@
     src=global.cnf.j2
     dest=/etc/mysql/conf.d/global.cnf
   sudo: yes
+  when: elao_mysql_config_globals and elao_mysql_config_globals|length > 0
 
 - name: MySQL basic configuration
   template: >
     src=basics.cnf.j2
     dest=/etc/mysql/conf.d/basics.cnf
   sudo: yes
+  when: elao_mysql_config_mysqld_basics and elao_mysql_config_mysqld_basics|length > 0
 
 - name: MySQL advanced configuration
   template: >
     src=advanced.cnf.j2
     dest=/etc/mysql/conf.d/advanced.cnf
   sudo: yes
+  when: elao_mysql_config_mysqld_advanced and elao_mysql_config_mysqld_advanced|length > 0
 
 - name: MySQL logging configuration
   template: >
     src=logging.cnf.j2
     dest=/etc/mysql/conf.d/logging.cnf
+  sudo: yes
+  when: elao_mysql_config_mysqld_logging and elao_mysql_config_mysqld_logging|length > 0
+
+- name: MySQL replication configuration
+  template: >
+    src=replication.cnf.j2
+    dest=/etc/mysql/conf.d/replication.cnf
+  sudo: yes
+  when: elao_mysql_config_mysqld_replication and elao_mysql_config_mysqld_replication|length > 0
+
+# Unloading old configuration
+- name: Check old MySQL global configuration
+  stat:
+    path: /etc/mysql/conf.d/global.cnf
+  register: result
+  sudo: yes
+
+- name: Cleanup old global configuration
+  command: rm /etc/mysql/conf.d/global.cnf
+  when: result.stat.exists and elao_mysql_config_globals|length < 1
+  sudo: yes
+
+- name: Check old MySQL basics configuration
+  stat:
+    path: /etc/mysql/conf.d/basics.cnf
+  register: result
+  sudo: yes
+
+- name: Cleanup old basics configuration
+  command: rm /etc/mysql/conf.d/basics.cnf
+  when: result.stat.exists and elao_mysql_config_mysqld_basics|length < 1
+  sudo: yes
+
+- name: Check old MySQL advanced configuration
+  stat:
+    path: /etc/mysql/conf.d/advanced.cnf
+  register: result
+  sudo: yes
+
+- name: Cleanup old advanced configuration
+  command: rm /etc/mysql/conf.d/advanced.cnf
+  when: result.stat.exists and elao_mysql_config_mysqld_advanced|length < 1
+  sudo: yes
+
+- name: Check old MySQL replication configuration
+  stat:
+    path: /etc/mysql/conf.d/replication.cnf
+  register: result
+  sudo: yes
+
+- name: Cleanup old replication configuration
+  command: rm /etc/mysql/conf.d/replication.cnf
+  when: result.stat.exists and elao_mysql_config_mysqld_replication|length < 1
+  sudo: yes
+
+- name: Check old MySQL logging configuration
+  stat:
+    path: /etc/mysql/conf.d/logging.cnf
+  register: result
+  sudo: yes
+
+- name: Cleanup old logging configuration
+  command: rm /etc/mysql/conf.d/logging.cnf
+  when: result.stat.exists and elao_mysql_config_mysqld_logging|length < 1
   sudo: yes

@@ -1,10 +1,17 @@
+[mysqld]
+
 {% if elao_mysql_config_mysqld_logging.general_log_file is defined %}
-general_log_file        = {{ elao_mysql_config_mysqld_basics.general_log_file }}
+general_log_file    = {{ elao_mysql_config_mysqld_logging.general_log_file }}
 {% endif %}
 {% if elao_mysql_config_mysqld_logging.general_log is defined %}
-general_log             = {{ elao_mysql_config_mysqld_basics.general_log }}
+general_log         = {{ elao_mysql_config_mysqld_logging.general_log }}
 {% endif %}
-
-#log_slow_queries   = /var/log/mysql/mysql-slow.log
-#long_query_time = 2
-#log-queries-not-using-indexes
+{% if elao_mysql_config_mysqld_logging.long_query_time is defined %}
+log_slow_queries    = {{ elao_mysql_config_mysqld_logging.log_slow_queries }}
+{% endif %}
+{% if elao_mysql_config_mysqld_logging.long_query_time is defined %}
+long_query_time     = {{ elao_mysql_config_mysqld_logging.long_query_time }}
+{% endif %}
+{% if elao_mysql_config_mysqld_logging.log_queries_not_using_indexes is defined %}
+log-queries-not-using-indexes
+{% endif %}
