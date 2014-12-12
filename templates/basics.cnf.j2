@@ -1,7 +1,5 @@
 [mysqld]
-#
-# * Basic Settings
-#
+
 user                    = {{ elao_mysql_config_mysqld_basics.user|default("mysql") }}
 pid-file                = {{ elao_mysql_config_mysqld_basics.pid|default("/var/run/mysqld/mysqld.pid") }}
 socket                  = {{ elao_mysql_config_mysqld_basics.socket|default("/var/run/mysqld/mysqld.sock") }}

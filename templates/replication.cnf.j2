@@ -3,8 +3,14 @@
 {% if elao_mysql_config_mysqld_replication.server_id is defined %}
 server-id                       = {{ elao_mysql_config_mysqld_replication.server_id }}
 {% endif %}
+{% if elao_mysql_config_mysqld_replication.report_host is defined %}
+report-host                     = {{ elao_mysql_config_mysqld_replication.report_host }}
+{% endif %}
 {% if elao_mysql_config_mysqld_replication.log_bin is defined %}
 log_bin                         = {{ elao_mysql_config_mysqld_replication.log_bin }}
+{% endif %}
+{% if elao_mysql_config_mysqld_replication.relay_log is defined %}
+relay-log                         = {{ elao_mysql_config_mysqld_replication.relay_log }}
 {% endif %}
 {% if elao_mysql_config_mysqld_replication.expire_logs_days is defined %}
 expire_logs_days                = {{ elao_mysql_config_mysqld_replication.expire_logs_days }}

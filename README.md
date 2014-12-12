@@ -65,8 +65,10 @@ elao_mysql_config_mysqld_advanced:
     read_buffer_size:       "2M"
 
 elao_mysql_config_mysqld_replication:
-    server_id:                      1
+    server_id:                      2
+    report_host:                    "db-1.mydomain.local"
     log_bin:                        "/var/log/mysql/mysql-bin.log"
+    relay_log:                      "/var/log/mysql/mysql-relay-bin.log"
     expire_logs_days:               2
     max_binlog_size:                "100M"
     innodb_flush_log_at_trx_commit: 1
