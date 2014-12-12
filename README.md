@@ -55,19 +55,24 @@ elao_mysql_config_mysqld_advanced:
     key_buffer:             "16M"
     max_allowed_packet:     "16M"
     thread_stack:           "192K"
-    thread_cache_size:      "8"
+    thread_cache_size:      8
     myisam_recover:         "BACKUP"
     max_connections:        100
     table_cache:            64
     thread_concurrency:     10
     query_cache_limit:      "1M"
     query_cache_size:       "16M"
+    read_buffer_size:       "2M"
 
 elao_mysql_config_mysqld_replication:
-    server_id:              1
-    log_bin:                "/var/log/mysql/mysql-bin.log"
-    binlog_do_db:           ~
-    binlog_ignore_db:       ~
+    server_id:                      1
+    log_bin:                        "/var/log/mysql/mysql-bin.log"
+    expire_logs_days:               2
+    max_binlog_size:                "100M"
+    innodb_flush_log_at_trx_commit: 1
+    sync_binlog:                    1
+    binlog_do_db:                   ~
+    binlog_ignore_db:               ~
 
 elao_mysql_config_mysqld_logging:
     log_slow_queries:               "/var/log/mysql/mysql-slow.log"

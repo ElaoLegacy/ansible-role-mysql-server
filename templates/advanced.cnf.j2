@@ -1,5 +1,6 @@
 [mysqld]
 
+join_buffer_size        = {{ elao_mysql_config_mysqld_advanced.join_buffer_size|default(131072) }}
 key_buffer              = {{ elao_mysql_config_mysqld_advanced.key_buffer|default("16M") }}
 max_allowed_packet      = {{ elao_mysql_config_mysqld_advanced.max_allowed_packet|default("16M") }}
 thread_stack            = {{ elao_mysql_config_mysqld_advanced.thread_stack|default("192K") }}
@@ -9,6 +10,7 @@ myisam-recover          = {{ elao_mysql_config_mysqld_advanced.myisam_recover|de
 max_connections         = {{ elao_mysql_config_mysqld_advanced.max_connections|default(100) }}
 table_cache             = {{ elao_mysql_config_mysqld_advanced.table_cache|default(64) }}
 thread_concurrency      = {{ elao_mysql_config_mysqld_advanced.thread_concurrency|default(10) }}
+read_buffer_size        = {{ elao_mysql_config_mysqld_advanced.read_buffer_size|default(131072) }}
 
 query_cache_limit       = {{ elao_mysql_config_mysqld_advanced.query_cache_limit|default("1M") }}
 query_cache_size        = {{ elao_mysql_config_mysqld_advanced.query_cache_size|default("16M") }}
