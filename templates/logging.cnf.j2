@@ -1,0 +1,10 @@
+{% if elao_mysql_config_mysqld_logging.general_log_file is defined %}
+general_log_file        = {{ elao_mysql_config_mysqld_basics.general_log_file }}
+{% endif %}
+{% if elao_mysql_config_mysqld_logging.general_log is defined %}
+general_log             = {{ elao_mysql_config_mysqld_basics.general_log }}
+{% endif %}
+
+#log_slow_queries   = /var/log/mysql/mysql-slow.log
+#long_query_time = 2
+#log-queries-not-using-indexes

@@ -1,0 +1,13 @@
+[mysqld]
+#
+# * Basic Settings
+#
+user                    = {{ elao_mysql_config_mysqld_basics.user|default("mysql") }}
+pid-file                = {{ elao_mysql_config_mysqld_basics.pid|default("/var/run/mysqld/mysqld.pid") }}
+socket                  = {{ elao_mysql_config_mysqld_basics.socket|default("/var/run/mysqld/mysqld.sock") }}
+port                    = {{ elao_mysql_config_mysqld_basics.port|default(3306) }}
+basedir                 = {{ elao_mysql_config_mysqld_basics.basedir|default("/usr") }}
+datadir                 = {{ elao_mysql_config_mysqld_basics.datadir|default("/var/lib/mysql") }}
+tmpdir                  = {{ elao_mysql_config_mysqld_basics.tmpdir|default("/tmp") }}
+lc-messages-dir         = {{ elao_mysql_config_mysqld_basics.messages_dir|default("/usr/share/mysql") }}
+bind-address            = {{ elao_mysql_config_mysqld_basics.bind_address|default("127.0.0.1") }}

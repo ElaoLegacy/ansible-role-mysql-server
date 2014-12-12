@@ -1,10 +1,51 @@
 ---
 
-elao_mysql_users: []
-elao_mysql_databases: []
+elao_mysql_users:          []
+elao_mysql_databases:      []
 
 elao_mysql_login_user:     root
 elao_mysql_login_password: null
 elao_mysql_login_host:     localhost
 
-elao_mysql_login_auto: false
+elao_mysql_login_auto:     false
+
+elao_mysql_config_globals:
+    socket:                 "/var/run/mysqld/mysqld.sock"   # Define client socket
+    port:                   3306                            # Define client connectiong port 
+    nice:                   0
+
+elao_mysql_config_mysqld_basics:
+    user:                   mysql
+    pid:                    "/var/run/mysqld/mysqld.pid"
+    socket:                 "/var/run/mysqld/mysqld.sock"   # Define server socket
+    port:                   3306                            # Define server listening port
+    basedir:                "/usr"
+    datadir:                "/var/lib/mysql"
+    tmpdir:                 "/tmp"
+    messages_dir:           "/usr/share/mysql"
+    character_set_server:   utf8
+    collation_server:       utf8_general_ci
+    bind_address:           "127.0.0.1"
+
+elao_mysql_config_mysqld_advanced:
+    key_buffer:             "16M"
+    max_allowed_packet:     "16M"
+    thread_stack:           "192K"
+    thread_cache_size:      "8"
+    myisam_recover:         "BACKUP"
+    max_connections:        100
+    table_cache:            64
+    thread_concurrency:     10
+    query_cache_limit:      "1M"
+    query_cache_size:       "16M"
+
+elao_mysql_config_mysqld_logging:
+    server_id:              1
+    log_bin:                "/var/log/mysql/mysql-bin.log"
+    binlog_do_db:           ~
+    binlog_ignore_db:       ~
+
+elao_mysql_config_mysqld_replication:
+    expire_logs_days:       10
+    max_binlog_size:        "100M"
+

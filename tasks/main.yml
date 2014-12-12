@@ -1,6 +1,7 @@
 ---
 
 - include: packages.yml
+- include: config.yml
 - include: services.yml
 
 - name: login auto

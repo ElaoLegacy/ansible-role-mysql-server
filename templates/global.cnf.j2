@@ -1,0 +1,7 @@
+[client]
+port                    = {{ elao_mysql_config_globals.port|default(3306) }}
+socket                  = {{ elao_mysql_config_globals.socket|default("/var/run/mysqld/mysqld.sock") }}
+
+[mysqld_safe]
+socket                  = {{ elao_mysql_config_globals.socket|default("/var/run/mysqld/mysqld.sock") }}
+nice                    = {{ elao_mysql_config_globals.nice|default(0) }}

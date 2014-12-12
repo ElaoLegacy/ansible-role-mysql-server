@@ -1,0 +1,25 @@
+---
+
+- name: MySQL global configuration
+  template: >
+    src=global.cnf.j2
+    dest=/etc/mysql/conf.d/global.cnf
+  sudo: yes
+
+- name: MySQL basic configuration
+  template: >
+    src=basics.cnf.j2
+    dest=/etc/mysql/conf.d/basics.cnf
+  sudo: yes
+
+- name: MySQL advanced configuration
+  template: >
+    src=advanced.cnf.j2
+    dest=/etc/mysql/conf.d/advanced.cnf
+  sudo: yes
+
+- name: MySQL logging configuration
+  template: >
+    src=logging.cnf.j2
+    dest=/etc/mysql/conf.d/logging.cnf
+  sudo: yes
