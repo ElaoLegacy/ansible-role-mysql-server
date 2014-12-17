@@ -92,6 +92,37 @@ Example Playbook
          - { role: elao.mysql-server }
 
 
+Reminder to setup replication:
+------------------------------
+
+
+1.- Start a session on the master by connecting to it with the command-line client, and flush all tables and block write statements by executing the FLUSH TABLES WITH READ LOCK statement:
+
+```
+mysql> FLUSH TABLES WITH READ LOCK;
+```
+
+2.- In a different session on the master, use the ```SHOW MASTER STATUS``` statement to determine the current binary log file name and position:
+
+```
+mysql > SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
++------------------+----------+--------------+------------------+
+| mysql-bin.000003 | 73       | test         | manual,mysql     |
++------------------+----------+--------------+------------------+
+```
+
+3.- To set up the slave to communicate with the master for replication, you must tell the slave the necessary connection information. To do this, execute the following statement on the slave, replacing the option values with the actual values relevant to your system:
+```
+mysql> CHANGE MASTER TO
+    ->     MASTER_HOST='master_host_name',
+    ->     MASTER_USER='replication_user_name',
+    ->     MASTER_PASSWORD='replication_password',
+    ->     MASTER_LOG_FILE='recorded_log_file_name',
+    ->     MASTER_LOG_POS=recorded_log_position;
+```
+
 License
 -------
 
