@@ -63,6 +63,9 @@ elao_mysql_config_mysqld_advanced:
     query_cache_limit:      "1M"
     query_cache_size:       "16M"
     read_buffer_size:       "2M"
+    tmp_table_size:         "16M"
+    max_heap_table_size:    "16M"
+    key_buffer_size:        "8M"
 
 elao_mysql_config_mysqld_replication:
     server_id:                      2
