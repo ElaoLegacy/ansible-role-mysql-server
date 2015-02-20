@@ -9,3 +9,5 @@ datadir                 = {{ elao_mysql_config_mysqld_basics.datadir|default("/v
 tmpdir                  = {{ elao_mysql_config_mysqld_basics.tmpdir|default("/tmp") }}
 lc-messages-dir         = {{ elao_mysql_config_mysqld_basics.messages_dir|default("/usr/share/mysql") }}
 bind-address            = {{ elao_mysql_config_mysqld_basics.bind_address|default("127.0.0.1") }}
+character_set_server    = {{ elao_mysql_config_mysqld_basics.character_set_server|default("utf8") }}
+collation_server        = {{ elao_mysql_config_mysqld_basics.collation_server|default("utf8_general_ci") }}

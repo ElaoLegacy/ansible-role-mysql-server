@@ -126,6 +126,12 @@ mysql> CHANGE MASTER TO
     ->     MASTER_LOG_POS=recorded_log_position;
 ```
 
+4.- On the master, release the read lock:
+
+```UNLOCK TABLES;``
+
+5.- Start up the MySQL slave.
+
 License
 -------
 
